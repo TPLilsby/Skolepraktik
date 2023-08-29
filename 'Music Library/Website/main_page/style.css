@@ -2,6 +2,12 @@
     background-color: black;
 }
 
+/* Link CSS */
+a {
+  text-decoration: none;
+}
+
+
 /* Navbar CSS */
 
 /* Add a black background color to the top navigation */
@@ -48,13 +54,59 @@
      text-align:center;
   }
 
+  /* Logo size */
 .logo-resize {
     width: 70px;
     height: auto;
 }
 
+/* Artist image size */
 .artist-resize img {
   width: auto;
   height: 413.33px;
 
+}
+
+/* Song Request CSS */
+
+.request-container {
+  max-width: 400px;
+  margin: 50px auto;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.request-container h1 {
+  text-align: center;
+}
+
+.request-container form {
+  display: grid;
+  gap: 10px;
+}
+
+.request-container label {
+  font-weight: bold;
+}
+
+.request-container input[type="text"],
+.request-container input[type="email"] {
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #f0f0f0;
 }
