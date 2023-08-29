@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "4Yp9ByMUl6AIb03A+sSELw2OQAQ5rrhc/zCpt42sDU6dZJlW/JR7x/CMqPiajz12HXy7pHHxEJYizXlMWyAufA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\zbctoli\\Documents\\GitHub\\Skolepraktik\\Quiz Game\\C#\\QuizGame\\QuizGame\\QuizGame.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\zbctoli\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\zbctoli\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\zbctoli\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\zbctoli\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\zbctoli\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\zbctoli\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
