@@ -1,0 +1,15 @@
+C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\bin\Debug\net6.0\CarManagement.exe
+C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\bin\Debug\net6.0\CarManagement.deps.json
+C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\bin\Debug\net6.0\CarManagement.runtimeconfig.json
+C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\bin\Debug\net6.0\CarManagement.dll
+C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\bin\Debug\net6.0\CarManagement.pdb
+C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\obj\Debug\net6.0\CarManagement.csproj.AssemblyReference.cache
+C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\obj\Debug\net6.0\CarManagement.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\obj\Debug\net6.0\CarManagement.AssemblyInfoInputs.cache
+C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\obj\Debug\net6.0\CarManagement.AssemblyInfo.cs
+C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\obj\Debug\net6.0\CarManagement.csproj.CoreCompileInputs.cache
+C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\obj\Debug\net6.0\CarManagement.dll
+C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\obj\Debug\net6.0\refint\CarManagement.dll
+C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\obj\Debug\net6.0\CarManagement.pdb
+C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\obj\Debug\net6.0\CarManagement.genruntimeconfig.cache
+C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\obj\Debug\net6.0\ref\CarManagement.dll

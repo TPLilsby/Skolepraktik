@@ -72,7 +72,6 @@ a {
 .request-container {
   max-width: 400px;
   margin: 50px auto;
-  background-color: rgba(0, 0, 0, 0.8);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
@@ -85,6 +84,7 @@ a {
 .request-container form {
   display: grid;
   gap: 10px;
+  background-color: black;
 }
 
 .request-container label {
@@ -94,7 +94,7 @@ a {
 .request-container input[type="text"],
 .request-container input[type="email"] {
   padding: 8px;
-  border: none;
+  border-color: white;
   border-radius: 5px;
 }
 
