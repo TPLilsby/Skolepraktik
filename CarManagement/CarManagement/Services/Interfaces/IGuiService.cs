@@ -15,5 +15,9 @@ namespace CarManagement.Services.Interfaces
         void ShowAllWheels(List<Wheel> wheels);
 
         void ShowOilQuality(List<Oil> oilQualities);
+
+        void ChangeOil(string oilQuality);
+
+        void RefillOil(int oilAmount);
     }
 }
