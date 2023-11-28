@@ -21,12 +21,20 @@ namespace CarManagement.Controllers
             _carPartsService = carPartsService;
         }
 
-        public void ShowAllParts()
-        {
-            this._guiService.ShowAllParts();
+        public void ProgramRunner() {
 
+            int input = this._guiService.ChooseProgram();
+
+            if (input == 1) {
+                Console.Clear();
+                this._guiService.ShowAllWheels(this._carPartsService.GetWheels());
+
+                this._guiService.ShowOilQuality(this._carPartsService.GetOil());
+            } else if (input == 2) {
+                Console.Clear();
+            }
         }
-
+        /*
         public void ShowAllWheels()
         {
 
@@ -37,7 +45,7 @@ namespace CarManagement.Controllers
         {
             this._guiService.ShowOilQuality(this._carPartsService.GetOil());
         }
-
+        */
 
     }
 }

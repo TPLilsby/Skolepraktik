@@ -5,5 +5,4 @@ using CarManagement.Services.Implementations;
 
 ICarManagementController ctrl = new CarManagementController(new MoneyService(), new GuiService(), new CarPartsService());
 
-ctrl.ShowAllWheels();
-ctrl.ShowOilQuality();
+ctrl.ProgramRunner();

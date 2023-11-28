@@ -8,10 +8,7 @@ namespace CarManagement.Controllers
 {
     internal interface ICarManagementController
     {
-        //void ShowAllParts();
+        void ProgramRunner();
 
-        void ShowAllWheels();
-
-        void ShowOilQuality();
     }
 }

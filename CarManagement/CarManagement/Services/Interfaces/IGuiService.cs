@@ -16,8 +16,10 @@ namespace CarManagement.Services.Interfaces
 
         void ShowOilQuality(List<Oil> oilQualities);
 
-        void ChangeOil(string oilQuality);
+        string ChangeOil(string oilQuality);
 
-        void RefillOil(int oilAmount);
+        int RefillOil(int oilAmount);
+
+       int ChooseProgram();
     }
 }
