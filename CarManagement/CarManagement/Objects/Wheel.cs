@@ -6,21 +6,25 @@ using System.Threading.Tasks;
 
 namespace CarManagement.Objects
 {
+    // Internal class representing a wheel entity
     internal class Wheel
     {
-        public int Id { get; }
-        public WheelTypeEnum WheelType { get; }
-        public TyreBrandEnum TyreBrand { get; }
-        public TyrePlacementEnum TyrePlacement { get; }
-        public TyreSizeEnum TyreSize { get; }
+        // Properties of the Wheel class
+        public int Id { get; }                     // Property for the ID of the wheel
+        public WheelTypeEnum WheelType { get; }    // Property for the type of the wheel using WheelTypeEnum
+        public TyreBrandEnum TyreBrand { get; }    // Property for the brand of the tyre using TyreBrandEnum
+        public TyrePlacementEnum TyrePlacement { get; } // Property for the placement of the tyre using TyrePlacementEnum
+        public TyreSizeEnum TyreSize { get; }      // Property for the size of the tyre using TyreSizeEnum
 
-        public Wheel (int id, WheelTypeEnum wheelType, TyreBrandEnum tyreBrand, TyrePlacementEnum tyrePlacement, TyreSizeEnum tyreSize)
+        // Constructor for initializing the Wheel object with various properties
+        public Wheel(int id, WheelTypeEnum wheelType, TyreBrandEnum tyreBrand, TyrePlacementEnum tyrePlacement, TyreSizeEnum tyreSize)
         {
-            Id = id;
-            WheelType = wheelType;
-            TyreBrand = tyreBrand;
-            TyrePlacement = tyrePlacement;
-            TyreSize = tyreSize;
+            Id = id;                               // Initializing the ID property
+            WheelType = wheelType;                  // Initializing the WheelType property
+            TyreBrand = tyreBrand;                  // Initializing the TyreBrand property
+            TyrePlacement = tyrePlacement;          // Initializing the TyrePlacement property
+            TyreSize = tyreSize;                    // Initializing the TyreSize property
         }
     }
 }
+

@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace CarManagement.Enums.Wheel
 {
+    // Internal enumeration representing different brands of tires
     internal enum TyreBrandEnum
     {
-        Goodyear,
-        Michelin,
-        Bridgestone,
-        Continental,
-        Firestone,
-        Hancock
+        Goodyear,      // Represents the Goodyear tire brand
+        Michelin,      // Represents the Michelin tire brand
+        Bridgestone,   // Represents the Bridgestone tire brand
+        Continental,   // Represents the Continental tire brand
+        Firestone,     // Represents the Firestone tire brand
+        Hancock        // Represents the Hancock tire brand
     }
 }

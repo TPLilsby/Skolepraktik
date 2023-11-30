@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace CarManagement.Services.Implementations
 {
+    // Internal class representing a MoneyService implementation
     internal class MoneyService : IMoneyService
     {
+        // This class currently doesn't contain any additional code or members
     }
 }

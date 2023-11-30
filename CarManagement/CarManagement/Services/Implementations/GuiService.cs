@@ -11,220 +11,225 @@ using System.Xml.Serialization;
 
 namespace CarManagement.Services.Implementations
 {
-    // Internal class for GuiService that extends from an Interface named IGuiService
+    // Internal class for GuiService that implements the IGuiService interface
     internal class GuiService : IGuiService
     {
         // GuiService constructor
         public GuiService() { }
 
-        #region Methods for show things to user
-        //Not in use (Think to use to show all parts to check on the car)
+        #region Methods for displaying information to the user
+
+        // Not in use currently
         public void ShowAllParts() { }
 
-        //Method for show all the wheels (gets a list of wheels)
+        // Method to show all the wheels to the user
         public void ShowAllWheels(List<Wheel> wheels)
         {
+            // Display a message indicating the wheels belong to a car
             Console.WriteLine("Car Wheels:");
 
-            //Runs through a list and print the wheels to the console
+            // Iterate through the list of wheels and print details for each wheel
             foreach (Wheel wheel in wheels)
             {
-                //Print wheels id & placement
+                // Print the ID and placement of each wheel
                 Console.WriteLine($"{wheel.Id} | {wheel.TyrePlacement}");
             }
+            // End of method
         }
 
-        //Method to show oil quality & amount
+        // Method to display oil quality and amount to the user
         public void ShowOilQuality(List<Oil> oilQualities)
         {
+            // Display the header for the oil quality and amount test
             Console.WriteLine("\nTest Of Oil Quality & Amount");
 
-            //Save values from OilQualityEnum to sring varible to later use
+            // Save values from OilQualityEnum to string variables for later use
             string bad = OilQualityEnum.Bad.ToString();
             string okay = OilQualityEnum.Okay.ToString();
             string good = OilQualityEnum.Good.ToString();
 
-            //Generate random number bbetween 1-4, to choose between the 3 string varibles above,
-            //to get the quality of the oil
+
+            // Generate a random number between 1-4 to determine the oil quality
             Random rndOilQuality = new Random();
             int randomOilQuality = rndOilQuality.Next(1, 4);
 
-            ////Generate random number bbetween 0-12, to get the amount of oil left in the car
+            // Generate a random number between 0-12 to simulate the amount of oil left in the car
             Random rndOilCapacity = new Random();
-            int randomOilCapacity = rndOilCapacity.Next(0, 12);
+            double randomOilCapacity = rndOilCapacity.Next(0, 12);
 
-            //If-tatement for the diffrent oil qualities
-            //Oil quality bad
+            // Check different oil qualities
+            // Oil quality: bad
             if (randomOilQuality == 1)
             {
-                //Print the oil quality and the remaining oil. And because its "Bad" The oil it needs to be changed.
+                // Display the oil quality and the remaining oil. As it's "Bad," the oil needs to be changed.
                 Console.WriteLine($"Oil Quality: {bad} | Oil remaining: {randomOilCapacity}L");
                 Console.WriteLine("Needs to be changed!!!!!");
-                
-                //Bool varible for the quality while loop
+
+                // Boolean variable for the quality while loop
                 bool qualityLoop = true;
 
-                //While loop
+                // Loop until the user decides whether to change the oil or not
                 while (qualityLoop)
                 {
-                    //Read the user input and save it to a int varible
+                    // Prompt the user to input '1' to change the oil
                     Console.Write("\nPress 1 to change oil: ");
                     int oilInputBad = int.Parse(Console.ReadLine());
 
-                    //If the user input 1 it will run a method
+                    // If the user inputs '1,' call the ChangeOil method and display the result
                     if (oilInputBad == 1)
                     {
-                        //Calls a method named ChangeOil, that takes the oil quality value from the Enum with it,
-                        //ánd prints the returning value to the console.
+                        // Calls a method named ChangeOil, that takes the oil quality value from the Enum with it,
+                        // and prints the returning value to the console.
                         Console.WriteLine(ChangeOil(bad));
 
-                        //Set the varible to false & and stops the while loop
+                        // Set the variable to false to exit the loop
                         qualityLoop = false;
 
-                    //If the input is something else it will run the while loop again
-                    } else
+                    }
+                    else
                     {
-                        //varible set to true
+                        // Continue the loop if the input is something else
                         qualityLoop = true;
                     }
                 }
 
-                //Bool varible for the refill while loop
+                // Boolean variable for the refill while loop
                 bool refillLoop = true;
 
-                //While loop
+                // Loop until the user decides whether to refill the oil or not
                 while (refillLoop)
                 {
-                    //Read the user input and save it to a char varible
+                    // Prompt the user to input 'R' to refill oil
                     Console.WriteLine("\nPress R to refill oil");
                     char userInput = char.Parse(Console.ReadLine());
 
-                    //If the user input is 'r' it will run a method
+                    // If the user inputs 'R,' call the RefillOil method and display the result
                     if (userInput == 'r')
                     {
                         //Calls a method named RefillOil, that takes the amount of the remaining oil from a vasrible with it,
                         //ánd prints the returning value to the console.
                         Console.WriteLine(RefillOil(randomOilCapacity));
 
-                        //Set the varible to false & and stops the while loop
+                        // Set the variable to false to exit the loop
                         refillLoop = false;
 
-                    //If the input is something else it will run the while loop again
-                    } else
+                    }
+                    else
                     {
-                        //varible set to true
+                        // Continue the loop if the input is something else
                         refillLoop = true;
                     }
                 }
 
-            //Oil quality okay
-            } else if (randomOilQuality == 2)
+                // Oil quality: okay
+            }
+            else if (randomOilQuality == 2)
             {
-                //Print the oil quality and the remaining oil. And because its "Okay" give the user to change it or wait.
+                // Display the oil quality and the remaining oil. As it's "Okay," the user can decide to change it now or wait for the next check.
                 Console.WriteLine($"Oil Quality: {okay} | Oil remaining: {randomOilCapacity}L");
                 Console.WriteLine("chance it now or else it needs to be changed at next check.");
 
-
-            //Oil quality good
-            } else if (randomOilQuality == 3) 
+            }
+            // Oil quality: good
+            else if (randomOilQuality == 3)
             {
 
-                //Print the oil quality and the remaining oil. And because its "Good" The oil don't needs to be changed.
+                // Display the oil quality and the remaining oil. As it's "Good," there's no need to change the oil.
                 Console.WriteLine($"Oil Quality: {good} | Oil remaining: {randomOilCapacity}L");
                 Console.WriteLine("No worries quality is good :)");
             }
+            // End of Method
         }
         #endregion
 
         #region Methods for functional usage
-        //Method to Chanhing oil
+
+        // Method to simulate changing oil
         public string ChangeOil(string oilQuality)
         {
-            //Clear the console
+            // Clear the console to provide a clean interface
             Console.Clear();
 
-            //Show the current oil quality
+            // Display the current oil quality to inform the user
             Console.WriteLine("Here you can change oil...");
             Console.WriteLine($"Current oil quality: {oilQuality}");
 
 
-            //Bool varible for the while loop
+            // Boolean variable for the while loop
             bool loop = true;
 
-            //While loop
+            // Loop until the user confirms the oil change
             while (loop)
             {
-
-                //Read the user input and save it to a int varible
+                // Prompt the user to input '1' to change the oil
                 Console.Write("\nPress 1 to change the oil: ");
                 int userInput = int.Parse(Console.ReadLine());
 
-                //If the user input isn't 1 it will run the while loop again
+                // If the user input isn't '1', indicate that something went wrong
                 if (userInput != 1)
                 {
-                    //printed to the console
+                    // Notify the user that something went wrong
                     Console.WriteLine("Something went wrong");
 
-                //Else if the input is correct it will jump out of the while loop
                 } else {
 
-                    //Set the varible to false & and stops the while loop
+                    // Set the variable to false to exit the loop as the user confirms the oil change
                     loop = false;
                 }
             }
 
-            //Returns a vulue with the oil quality changed to "good".
+            // Return a message indicating the oil quality changed to "good"
             return $"Oil is now changed from {oilQuality} to {OilQualityEnum.Good.ToString()}";
+            //End of Method
         }
 
-        //Method to refill oil
-        public int RefillOil(int oilAmount)
+        // Method to simulate refilling oil
+        public double RefillOil(double oilAmount)
         {
-            //The total amount of oil in a tank.
-            int totalAmount = 15;
+            // The total amount of oil in a tank
+            double totalAmount = 15;
 
-            //Calculate how much oiled that is refilled.
-            int refilledOil = totalAmount - oilAmount;
+            // Calculate how much oil is refilled by subtracting the current amount from the total
+            double refilledOil = totalAmount - oilAmount;
 
-            //Returns a int with how much is refilled
+            // Return the amount of oil refilled
             return refilledOil;
-
+            // End of Method
         }
 
-        //Method to choose wich part of the program you will run
+        // Method to choose a specific part of the program to run
         public int ChooseProgram()
         {
-            //Bool varible for the while loop
+            // Boolean variable for the while loop
             bool loop = true;
 
-            //While loop
+            // Loop until the user provides a valid choice
             while (loop)
             {
-
-                //Read the user input and save it to a string varible
+                // Prompt the user to choose between two options: check(1) or manual(2)
                 Console.WriteLine("Choose between the check(1) or Manual(2)");
                 int choice = int.Parse(Console.ReadLine());
 
-                //If the user input isn't 1 it will run the while loop again
+                // Check if the user input is either 1 or 2
                 if (choice == 1 || choice == 2)
                 {
-                    //Set the varible to false & and stops the while loop
+                    // Set the variable to false to exit the loop
                     loop = false;
 
-                    //Returns the user choice
+                    //Return the user's choice
                     return choice;
 
-                    //Else if the input is correct it will jump out of the while loop
-                }
-                else
-                {
-                    //printed to the console
+                  //Else if the input is correct it will jump out of the while loop
+                } else {
+
+                    // Inform the user that something went wrong with their input
                     Console.WriteLine("Something went wrong");
                 }
             }
 
-            //Returns a vulue
+            // Return a default value (2 in this case) if there's an issue with the input
             return 2;
+            // End of Method
         }
         #endregion
 

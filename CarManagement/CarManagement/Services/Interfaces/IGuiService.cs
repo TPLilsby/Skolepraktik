@@ -8,18 +8,24 @@ using System.Threading.Tasks;
 
 namespace CarManagement.Services.Interfaces
 {
+    // Internal interface representing GUI services for managing car-related functionalities
     internal interface IGuiService
     {
-        void ShowAllParts();
+        // Method declarations for showing different parts or functionalities related to cars
+        void ShowAllParts(); // Method not currently in use
 
-        void ShowAllWheels(List<Wheel> wheels);
+        void ShowAllWheels(List<Wheel> wheels); // Method to display information about car wheels
 
-        void ShowOilQuality(List<Oil> oilQualities);
+        void ShowOilQuality(List<Oil> oilQualities); // Method to display oil quality information
 
-        string ChangeOil(string oilQuality);
 
-        int RefillOil(int oilAmount);
+        // Methods for simulating actions related to oil change and refill
+        string ChangeOil(string oilQuality); // Method to simulate changing the oil quality
 
-       int ChooseProgram();
+        double RefillOil(double oilAmount); // Method to simulate refilling the oil
+
+
+        // Method to allow user selection of a specific part of the program
+        int ChooseProgram(); // Method to choose a specific part of the program to run
     }
 }
