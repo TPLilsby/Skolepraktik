@@ -11,6 +11,12 @@ namespace CarManagement.Services.Interfaces
     // Internal interface representing GUI services for managing car-related functionalities
     internal interface IGuiService
     {
+        #region Program Runner
+        // Method to allow user selection of a specific part of the program
+        int ChooseProgram(); // Method to choose a specific part of the program to run
+        #endregion
+
+        #region Car Service Page
         // Method declarations for showing different parts or functionalities related to cars
         void ShowAllParts(); // Method not currently in use
 
@@ -23,9 +29,14 @@ namespace CarManagement.Services.Interfaces
         string ChangeOil(string oilQuality); // Method to simulate changing the oil quality
 
         double RefillOil(double oilAmount); // Method to simulate refilling the oil
+        #endregion
 
 
-        // Method to allow user selection of a specific part of the program
-        int ChooseProgram(); // Method to choose a specific part of the program to run
+        #region Manual Page
+        // Method declarations for displaying information about available cars
+        void ShowAllCars(List<Car> cars); // Method to display all available cars
+
+        void ShowCarById(List<Car> car); // Method to display detailed information of a specific car by its ID
+        #endregion
     }
 }

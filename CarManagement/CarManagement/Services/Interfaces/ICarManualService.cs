@@ -10,7 +10,9 @@ namespace CarManagement.Services.Interfaces
     // Interface defining the contract for a Car Manual Service
     internal interface ICarManualService
     {
-        // Method declaration to get a list of cars
+        // Method declaration to get a list of cars and get one by Id
         List<Car> GetCars();  // This method returns a list of Car objects
+
+       List<Car> GetCarById(); // This method returns a list of Car objects by id
     }
 }

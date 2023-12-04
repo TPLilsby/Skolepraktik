@@ -14,13 +14,15 @@ namespace CarManagement.Controllers
         private readonly IMoneyService _moneyService; // Service for money-related operations
         private readonly IGuiService _guiService; // Service for GUI-related operations
         private readonly ICarPartsService _carPartsService; // Service for car parts-related operations
+        private readonly ICarManualService _carManualService; // Service for managing car manual-related operations
 
         // Constructor for CarManagementController initializing necessary services via dependency injection
-        public CarManagementController (IMoneyService moneyService, IGuiService guiService, ICarPartsService carPartsService)
+        public CarManagementController (IMoneyService moneyService, IGuiService guiService, ICarPartsService carPartsService, ICarManualService carManualService)
         {
             _moneyService = moneyService;
             _guiService = guiService;
             _carPartsService = carPartsService;
+            _carManualService = carManualService;
         }
         // Method implementing the program flow for managing car functionalities
         public void ProgramRunner() 
@@ -50,6 +52,12 @@ namespace CarManagement.Controllers
 
                 // Clear the console screen as a placeholder for future functionalities
                 Console.Clear();
+
+                // Display all available cars using GUI service based on the car manual service data
+                this._guiService.ShowAllCars(this._carManualService.GetCars());
+
+                // Display detailed information of a specific car using GUI service based on the car manual service data
+                this._guiService.ShowCarById(this._carManualService.GetCarById());
             }
 
             // Placeholder for handling additional user input conditions

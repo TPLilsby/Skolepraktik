@@ -1,6 +1,7 @@
 ﻿using CarManagement.Enums.Oil;
 using CarManagement.Objects;
 using CarManagement.Services.Interfaces;
+using CarManagement.Services.Implementations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,7 +18,46 @@ namespace CarManagement.Services.Implementations
         // GuiService constructor
         public GuiService() { }
 
-        #region Methods for displaying information to the user
+        #region Method for choosing which Part of the Program
+        // Method to choose a specific part of the program to run
+        public int ChooseProgram()
+        {
+            // Boolean variable for the while loop
+            bool loop = true;
+
+            // Loop until the user provides a valid choice
+            while (loop)
+            {
+                // Prompt the user to choose between two options: check(1) or manual(2)
+                Console.WriteLine("Choose between the check(1) or Manual(2)");
+                int choice = int.Parse(Console.ReadLine());
+
+                // Check if the user input is either 1 or 2
+                if (choice == 1 || choice == 2)
+                {
+                    // Set the variable to false to exit the loop
+                    loop = false;
+
+                    //Return the user's choice
+                    return choice;
+
+                    //Else if the input is correct it will jump out of the while loop
+                }
+                else
+                {
+
+                    // Inform the user that something went wrong with their input
+                    Console.WriteLine("Something went wrong");
+                }
+            }
+
+            // Return a default value (2 in this case) if there's an issue with the input
+            return 2;
+            // End of Method
+        }
+        #endregion
+
+        #region Service Page (Methods for displaying information to the user)
 
         // Not in use currently
         public void ShowAllParts() { }
@@ -127,7 +167,7 @@ namespace CarManagement.Services.Implementations
             {
                 // Display the oil quality and the remaining oil. As it's "Okay," the user can decide to change it now or wait for the next check.
                 Console.WriteLine($"Oil Quality: {okay} | Oil remaining: {randomOilCapacity}L");
-                Console.WriteLine("chance it now or else it needs to be changed at next check.");
+                Console.WriteLine("change it now or else it needs to be changed at next check.");
 
             }
             // Oil quality: good
@@ -142,8 +182,7 @@ namespace CarManagement.Services.Implementations
         }
         #endregion
 
-        #region Methods for functional usage
-
+        #region Service Page (Methods for functional usage)
         // Method to simulate changing oil
         public string ChangeOil(string oilQuality)
         {
@@ -171,7 +210,9 @@ namespace CarManagement.Services.Implementations
                     // Notify the user that something went wrong
                     Console.WriteLine("Something went wrong");
 
-                } else {
+                }
+                else
+                {
 
                     // Set the variable to false to exit the loop as the user confirms the oil change
                     loop = false;
@@ -196,40 +237,45 @@ namespace CarManagement.Services.Implementations
             return refilledOil;
             // End of Method
         }
+        #endregion
 
-        // Method to choose a specific part of the program to run
-        public int ChooseProgram()
+        #region Manual Page (Methods for displaying information to the user)
+        // Method to display all cars with their IDs and brands
+        public void ShowAllCars(List<Car> cars)
         {
-            // Boolean variable for the while loop
-            bool loop = true;
-
-            // Loop until the user provides a valid choice
-            while (loop)
+            // Foreach loop
+            foreach (Car car in cars)
             {
-                // Prompt the user to choose between two options: check(1) or manual(2)
-                Console.WriteLine("Choose between the check(1) or Manual(2)");
-                int choice = int.Parse(Console.ReadLine());
-
-                // Check if the user input is either 1 or 2
-                if (choice == 1 || choice == 2)
-                {
-                    // Set the variable to false to exit the loop
-                    loop = false;
-
-                    //Return the user's choice
-                    return choice;
-
-                  //Else if the input is correct it will jump out of the while loop
-                } else {
-
-                    // Inform the user that something went wrong with their input
-                    Console.WriteLine("Something went wrong");
-                }
+                // Display id and brand of the cars
+                Console.WriteLine($"{car.Id}: {car.Brand}");
             }
 
-            // Return a default value (2 in this case) if there's an issue with the input
-            return 2;
-            // End of Method
+            Console.WriteLine(); // Empty line for separation
+        }
+
+        // Method to display detailed information of a specific car by its ID
+        public void ShowCarById(List<Car> cars)
+        {
+            // Foreach loop
+            foreach (Car car in cars)
+            {
+                // Display brand and model of the car
+                Console.WriteLine($"{car.Brand}: {car.Model}");
+
+                // Display tyre size of the car
+                Console.WriteLine($"Tyre Size: {car.TyreSize}");
+            }
+
+            // Prompt the user to press ESC to return to the start menu
+            Console.WriteLine("\nPress ESC to get to the start menu:");
+            var info = Console.ReadKey();
+
+            // If the user presses ESC, clear the console and return to the start menu
+            if (info.Key == ConsoleKey.Escape)
+            {
+                Console.Clear();
+                ChooseProgram(); // Assuming ChooseProgram() is a method that leads to the start menu
+            }
         }
         #endregion
 
