@@ -100,8 +100,7 @@ namespace CarManagement.Services.Implementations
             // Check different oil qualities
             // Oil quality: bad
             if (randomOilQuality == 1)
-            {
-                // Display the oil quality and the remaining oil. As it's "Bad," the oil needs to be changed.
+            {// Display the oil quality and remaining oil. Since it's "Bad," the oil needs to be changed.
                 Console.WriteLine($"Oil Quality: {bad} | Oil remaining: {randomOilCapacity}L");
                 Console.WriteLine("Needs to be changed!!!!!");
 
@@ -118,18 +117,14 @@ namespace CarManagement.Services.Implementations
                     // If the user inputs '1,' call the ChangeOil method and display the result
                     if (oilInputBad == 1)
                     {
-                        // Calls a method named ChangeOil, that takes the oil quality value from the Enum with it,
-                        // and prints the returning value to the console.
-                        Console.WriteLine(ChangeOil(bad));
 
-                        // Set the variable to false to exit the loop
-                        qualityLoop = false;
-
+                        Console.WriteLine(ChangeOil(bad)); // Simulate changing the oil quality
+                        qualityLoop = false; // Exit the loop after changing the oil
                     }
                     else
                     {
-                        // Continue the loop if the input is something else
-                        qualityLoop = true;
+                        Console.WriteLine("Something went wrong..."); // Display an error message for invalid input
+                        qualityLoop = true; // Restart the loop due to invalid input
                     }
                 }
 
@@ -143,32 +138,85 @@ namespace CarManagement.Services.Implementations
                     Console.WriteLine("\nPress R to refill oil");
                     char userInput = char.Parse(Console.ReadLine());
 
-                    // If the user inputs 'R,' call the RefillOil method and display the result
+
+                    // If the user inputs 'r' to refill the oil
                     if (userInput == 'r')
                     {
-                        //Calls a method named RefillOil, that takes the amount of the remaining oil from a vasrible with it,
-                        //ánd prints the returning value to the console.
-                        Console.WriteLine(RefillOil(randomOilCapacity));
-
-                        // Set the variable to false to exit the loop
-                        refillLoop = false;
-
+                        Console.WriteLine($"Refilled oil: {RefillOil(randomOilCapacity)}L"); // Simulate refilling the oil
+                        refillLoop = false; // Exit the loop after refilling
                     }
+                    // If the user input is not 'r'
                     else
                     {
-                        // Continue the loop if the input is something else
-                        refillLoop = true;
+                        Console.WriteLine("Something went wrong..."); // Display an error message for invalid input
+                        refillLoop = true; // Restart the loop if the input is something else
                     }
-                }
 
-                // Oil quality: okay
+                }
             }
+            // Oil quality: okay
             else if (randomOilQuality == 2)
             {
-                // Display the oil quality and the remaining oil. As it's "Okay," the user can decide to change it now or wait for the next check.
+                // Display the oil quality and remaining oil. If it's "Okay," the user can decide to change it now or wait for the next check.
                 Console.WriteLine($"Oil Quality: {okay} | Oil remaining: {randomOilCapacity}L");
-                Console.WriteLine("change it now or else it needs to be changed at next check.");
+                Console.WriteLine("Change it now or else it needs to be changed at the next check.");
 
+                // Boolean variable for the quality while loop
+                bool qualityLoop = true;
+
+                // Loop until the user decides whether to change the oil or not
+                while (qualityLoop)
+                {
+                    // Prompt the user to choose whether to change the oil now or wait
+                    Console.WriteLine("\nDo you want to change it now(1) or wait(2)");
+                    int oilInputOkay = int.Parse(Console.ReadLine());
+
+                    // If the user chooses to change the oil immediately by inputting '1'
+                    if (oilInputOkay == 1)
+                    {
+                        Console.WriteLine(ChangeOil(okay)); // Simulate changing the oil quality
+                        qualityLoop = false; // Exit the loop after changing the oil
+                    }
+                    // If the user chooses to wait until later by inputting '2'
+                    else if (oilInputOkay == 2)
+                    {
+                        qualityLoop = false; // User chooses to wait, exit the loop
+                    }
+                    // If the input is neither '1' nor '2'
+                    else
+                    {
+                        Console.WriteLine("Something went wrong..."); // Display an error message for invalid input
+                        qualityLoop = true; // Restart the loop due to invalid input
+                    }
+
+
+                }
+
+                // Boolean variable for the refill while loop
+                bool refillLoop = true;
+
+                // Loop until the user decides whether to refill the oil or not
+                while (refillLoop)
+                {
+                    // Prompt the user to input 'R' to refill oil
+                    Console.WriteLine("\nPress R to refill oil");
+                    char userInput = char.Parse(Console.ReadLine());
+
+
+                    // If the user inputs 'r' to refill the oil
+                    if (userInput == 'r')
+                    {
+                        Console.WriteLine($"Refilled oil: {RefillOil(randomOilCapacity)}L"); // Simulate refilling the oil
+                        refillLoop = false; // Exit the loop after refilling
+                    }
+                    // If the user input is not 'r'
+                    else
+                    {
+                        Console.WriteLine("Something went wrong..."); // Display an error message for invalid input
+                        refillLoop = true; // Restart the loop if the input is something else
+                    }
+
+                }
             }
             // Oil quality: good
             else if (randomOilQuality == 3)
@@ -177,6 +225,32 @@ namespace CarManagement.Services.Implementations
                 // Display the oil quality and the remaining oil. As it's "Good," there's no need to change the oil.
                 Console.WriteLine($"Oil Quality: {good} | Oil remaining: {randomOilCapacity}L");
                 Console.WriteLine("No worries quality is good :)");
+
+                // Boolean variable for the refill while loop
+                bool refillLoop = true;
+
+                // Loop until the user decides whether to refill the oil or not
+                while (refillLoop)
+                {
+                    // Prompt the user to input 'R' to refill oil
+                    Console.WriteLine("\nPress R to refill oil");
+                    char userInput = char.Parse(Console.ReadLine());
+
+
+                    // If the user inputs 'r' to refill the oil
+                    if (userInput == 'r')
+                    {
+                        Console.WriteLine($"Refilled oil: {RefillOil(randomOilCapacity)}L"); // Simulate refilling the oil
+                        refillLoop = false; // Exit the loop after refilling
+                    }
+                    // If the user input is not 'r'
+                    else
+                    {
+                        Console.WriteLine("Something went wrong..."); // Display an error message for invalid input
+                        refillLoop = true; // Restart the loop if the input is something else
+                    }
+
+                }
             }
             // End of Method
         }
@@ -227,8 +301,9 @@ namespace CarManagement.Services.Implementations
         // Method to simulate refilling oil
         public double RefillOil(double oilAmount)
         {
-            // The total amount of oil in a tank
-            double totalAmount = 15;
+            Console.WriteLine("What is the total capacity on the car? - Min 12 L");
+            double totalAmount = double.Parse(Console.ReadLine());
+
 
             // Calculate how much oil is refilled by subtracting the current amount from the total
             double refilledOil = totalAmount - oilAmount;
@@ -254,16 +329,18 @@ namespace CarManagement.Services.Implementations
         }
 
         // Method to display detailed information of a specific car by its ID
-        public void ShowCarById(List<Car> cars)
+        public void ShowCarById(List<Car> returnedCar)
         {
-            // Foreach loop
-            foreach (Car car in cars)
+            // Loop through each car in the 'returnedCar' list and display it's specifications
+            foreach (Car car in returnedCar)
             {
-                // Display brand and model of the car
-                Console.WriteLine($"{car.Brand}: {car.Model}");
-
-                // Display tyre size of the car
-                Console.WriteLine($"Tyre Size: {car.TyreSize}");
+                // Display different specifications of the car
+                Console.WriteLine($"{car.Brand}: {car.Model}"); // Display brand and model of the car
+                Console.WriteLine($"Horse Power: {car.HorsePower} HK"); // Display the car's horsepower
+                Console.WriteLine($"Tyre Size: {car.TyreSize}"); // Display tyre size of the car
+                Console.WriteLine($"Tyre pressure between: {car.TyrePressureMin} - {car.TyrePressureMax}"); // Display tyre pressure range
+                Console.WriteLine($"Oil capacity: {car.TotalOilCapacity} L"); // Display oil capacity of the car
+                Console.WriteLine($"Number Of Lights: {car.NumberOfLights}"); // Display number of lights on the car
             }
 
             // Prompt the user to press ESC to return to the start menu

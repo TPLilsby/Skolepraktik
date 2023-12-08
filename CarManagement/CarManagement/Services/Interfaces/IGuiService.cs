@@ -36,7 +36,7 @@ namespace CarManagement.Services.Interfaces
         // Method declarations for displaying information about available cars
         void ShowAllCars(List<Car> cars); // Method to display all available cars
 
-        void ShowCarById(List<Car> car); // Method to display detailed information of a specific car by its ID
+        void ShowCarById(List<Car> returnedCar); // Method to display detailed information of a specific car by its ID
         #endregion
     }
 }

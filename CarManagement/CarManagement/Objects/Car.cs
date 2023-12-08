@@ -16,6 +16,7 @@ namespace CarManagement.Objects
         public int Id { get; set; }                    // Unique identifier for the car
         public string Brand { get; set; }              // Brand of the car
         public string Model { get; set; }              // Model of the car
+        public int HorsePower { get; set; }            // Horse power on the car
 
         // Parts on the car
         public TyreSizeEnum TyreSize { get; set; }     // Size of the car's tires
@@ -25,12 +26,12 @@ namespace CarManagement.Objects
         public int NumberOfLights { get; set; }        // Number of lights in the car
 
         // Constructor to initialize the Car object with specified details
-        public Car(int id, string brand, string model, TyreSizeEnum tyreSize, int tyrePressureMin, int tyrePressureMax, double totalOilCapacity, int numberOfLights)
+        public Car(int id, string brand, string  model, int horsePower, TyreSizeEnum tyreSize, int tyrePressureMin, int tyrePressureMax, double totalOilCapacity, int numberOfLights)
         {
-            // Initializing the properties of the Car object
             Id = id;
             Brand = brand;
             Model = model;
+            HorsePower = horsePower;
             TyreSize = tyreSize;
             TyrePressureMin = tyrePressureMin;
             TyrePressureMax = tyrePressureMax;
