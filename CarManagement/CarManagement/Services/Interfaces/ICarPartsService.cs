@@ -12,9 +12,20 @@ namespace CarManagement.Services.Interfaces
     internal interface ICarPartsService
     {
         // Method declaration to retrieve a list of wheels
-        List<Wheel> GetWheels(); // This method returns a list of Wheel objects
+        List<Wheel> GetWheels(); // Retrieves a list of all available wheels.
+
+        // Method to retrieve a list of summer wheels
+        List<Wheel> GetSummerWheels(); // Retrieves a list of summer wheels.
+
+        // Method to retrieve a list of winter wheels
+        List<Wheel> GetWinterWheels(); // Retrieves a list of winter wheels.
+
+        // Method to retrieve a list of whole-year wheels
+        List<Wheel> GetWholeYearWheels(); // Retrieves a list of wheels suitable for the whole-year.
+
+
 
         // Method declaration to retrieve a list of oil qualities
-        List<Oil> GetOil(); // This method returns a list of Oil objects
+        List<Oil> GetOil(); // Retrieves a list of available oil qualities.
     }
 }

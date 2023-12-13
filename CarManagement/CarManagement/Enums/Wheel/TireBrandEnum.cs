@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CarManagement.Enums.Wheel
 {
     // Internal enumeration representing different brands of tires
-    internal enum TyreBrandEnum
+    internal enum TireBrandEnum
     {
         Goodyear,      // Represents the Goodyear tire brand
         Michelin,      // Represents the Michelin tire brand

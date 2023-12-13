@@ -19,24 +19,24 @@ namespace CarManagement.Objects
         public int HorsePower { get; set; }            // Horse power on the car
 
         // Parts on the car
-        public TyreSizeEnum TyreSize { get; set; }     // Size of the car's tires
-        public int TyrePressureMin { get; set; }       // Minimum tire pressure
-        public int TyrePressureMax { get; set; }       // Maximum tire pressure
+        public TireSizeEnum TireSize { get; set; }     // Size of the car's tires
+        public int TirePressureMin { get; set; }       // Minimum tire pressure
+        public int TirePressureMax { get; set; }       // Maximum tire pressure
         public double TotalOilCapacity { get; set; }   // Total oil capacity of the car
         public int NumberOfLights { get; set; }        // Number of lights in the car
 
         // Constructor to initialize the Car object with specified details
-        public Car(int id, string brand, string  model, int horsePower, TyreSizeEnum tyreSize, int tyrePressureMin, int tyrePressureMax, double totalOilCapacity, int numberOfLights)
+        public Car(int id, string brand, string  model, int horsePower, TireSizeEnum tireSize, int tirePressureMin, int tirePressureMax, double totalOilCapacity, int numberOfLights)
         {
-            Id = id;
-            Brand = brand;
-            Model = model;
-            HorsePower = horsePower;
-            TyreSize = tyreSize;
-            TyrePressureMin = tyrePressureMin;
-            TyrePressureMax = tyrePressureMax;
-            TotalOilCapacity = totalOilCapacity;
-            NumberOfLights = numberOfLights;
+            Id = id;                                // Initializing the ID property
+            Brand = brand;                          // Initializing the Brand property
+            Model = model;                          // Initializing the Model property
+            HorsePower = horsePower;                // Initializing the HorsePower property
+            TireSize = tireSize;                    // Initializing the TireSize property
+            TirePressureMin = tirePressureMin;      // Initializing the TirePressureMin property
+            TirePressureMax = tirePressureMax;      // Initializing the TirePressureMax property
+            TotalOilCapacity = totalOilCapacity;    // Initializing the TotalOilCapacity property
+            NumberOfLights = numberOfLights;        // Initializing the  NumberOfLight property
         }
     }
 }

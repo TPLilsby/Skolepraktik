@@ -20,14 +20,21 @@ namespace CarManagement.Services.Interfaces
         // Method declarations for showing different parts or functionalities related to cars
         void ShowAllParts(); // Method not currently in use
 
+        #region Wheels
         void ShowAllWheels(List<Wheel> wheels); // Method to display information about car wheels
+
+        // Methods to display specific types of wheels
+        void ShowSummerWheels(List<Wheel> summerWheels); // Method to show summer wheels
+        void ShowWinterWheels(List<Wheel> winterWheels); // Method to show winter wheels
+        void ShowWholeYearWheels(List<Wheel> wholeYearWheels); // Method to show whole year wheels
+        #endregion
 
         void ShowOilQuality(List<Oil> oilQualities); // Method to display oil quality information
 
-
-        // Methods for simulating actions related to oil change and refill
+        // Methods for simulating actions related to car maintenance
+        string FixTirePressure(double totalPressure); // Method to fix tire pressure
+        int ChangeWheels(); // Method to initiate the process of changing wheels
         string ChangeOil(string oilQuality); // Method to simulate changing the oil quality
-
         double RefillOil(double oilAmount); // Method to simulate refilling the oil
         #endregion
 
@@ -35,7 +42,6 @@ namespace CarManagement.Services.Interfaces
         #region Manual Page
         // Method declarations for displaying information about available cars
         void ShowAllCars(List<Car> cars); // Method to display all available cars
-
         void ShowCarById(List<Car> returnedCar); // Method to display detailed information of a specific car by its ID
         #endregion
     }

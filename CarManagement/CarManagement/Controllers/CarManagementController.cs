@@ -25,7 +25,7 @@ namespace CarManagement.Controllers
             _carManualService = carManualService;
         }
         // Method implementing the program flow for managing car functionalities
-        public void ProgramRunner() 
+        public void ProgramRunner()
         {
             // Getting user input to choose a program part
             int input = this._guiService.ChooseProgram();
@@ -41,6 +41,27 @@ namespace CarManagement.Controllers
 
                 // Show information about wheels using the CarPartsService and GuiService
                 this._guiService.ShowAllWheels(this._carPartsService.GetWheels());
+
+                // Get user input to change wheels (e.g., summer, winter, or whole year)
+                int wheelInput = this._guiService.ChangeWheels();
+
+                // Display information about different types of wheels based on user selection
+                if (wheelInput == 1)
+                {
+                    // Show information about summer wheels using the CarPartsService and GuiService
+                    this._guiService.ShowSummerWheels(this._carPartsService.GetSummerWheels());
+                }
+                else if (wheelInput == 2)
+                {
+                    // Show information about winter wheels using the CarPartsService and GuiService
+                    this._guiService.ShowWinterWheels(this._carPartsService.GetWinterWheels());
+                }
+                else if (wheelInput == 3)
+                {
+                    // Show information about whole-year wheels using the CarPartsService and GuiService
+                    this._guiService.ShowWholeYearWheels(this._carPartsService.GetWholeYearWheels());
+                }
+
 
                 // Show information about oil quality using the CarPartsService and GuiService
                 this._guiService.ShowOilQuality(this._carPartsService.GetOil());
@@ -63,6 +84,7 @@ namespace CarManagement.Controllers
             // Placeholder for handling additional user input conditions
             // Additional conditions for other possible user inputs can be added here
         }
+
 
     }
 }

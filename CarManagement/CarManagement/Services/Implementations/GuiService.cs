@@ -62,17 +62,151 @@ namespace CarManagement.Services.Implementations
         // Not in use currently
         public void ShowAllParts() { }
 
-        // Method to show all the wheels to the user
+        // Method to display information about all the wheels of a car to the user
         public void ShowAllWheels(List<Wheel> wheels)
         {
-            // Display a message indicating the wheels belong to a car
+            double totalPressure = 0; // Variable to store the total pressure of all wheels
+
+            // Display a message indicating the displayed wheels belong to a car
             Console.WriteLine("Car Wheels:");
 
             // Iterate through the list of wheels and print details for each wheel
             foreach (Wheel wheel in wheels)
             {
-                // Print the ID and placement of each wheel
-                Console.WriteLine($"{wheel.Id} | {wheel.TyrePlacement}");
+                // Print the ID and placement of each wheel along with its tire pressure
+                Console.WriteLine("________________________________________");
+                Console.WriteLine($"{wheel.Id}: {wheel.TirePlacement} | {wheel.WheelType} | {wheel.TireBrand} - {wheel.TirePressure} ¤|");
+
+                // Calculate the total pressure of all wheels
+                totalPressure += wheel.TirePressure;
+            }
+
+
+            bool changeLoop = true; // Boolean variable for the while loop to handle tire change prompt
+
+            // Loop to prompt the user for tire change preference
+            while (changeLoop)
+            {
+                Console.Write("Do you want to change to another set of tires? (Yes/Y | No/N): ");
+                string input = Console.ReadLine().ToUpper(); // Read user input and convert to uppercase
+
+                if (input == "Y")
+                {
+                    changeLoop = false; // Exit the loop to change the wheels if the user selects 'Yes'
+
+                    ChangeWheels(); // Call the method to change the wheels
+                }
+                else if (input == "N")
+                {
+                    changeLoop = false;
+                    // Check if the total pressure is not within the expected range (184 to 200)
+                    if (totalPressure > 200 || totalPressure < 184)
+                    {
+                        // If the total pressure is outside the range, suggest fixing the tire pressure
+                        Console.WriteLine(FixTirePressure(totalPressure));
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Wrong input... try again"); // Display error message for incorrect input
+                    changeLoop = true; // Restart the loop due to incorrect input
+                }
+            }
+
+            // End of method
+        }
+
+        // Method to display information about the summer wheels
+        public void ShowSummerWheels(List<Wheel> summerWheels)
+        {
+            // Variable to store the total pressure of summer wheels
+            double totalPressure = 0;
+
+            // Display header indicating a change to summer wheels
+            Console.WriteLine("The wheels are changed to Summer:");
+
+            // Iterate through each wheel in the list of summer wheels
+            foreach (Wheel wheel in summerWheels)
+            {
+                // Display separator line for each wheel
+                Console.WriteLine("________________________________________");
+
+                // Display details of each summer wheel: ID, placement, type, brand, and pressure
+                Console.WriteLine($"{wheel.Id}: {wheel.TirePlacement} | {wheel.WheelType} | {wheel.TireBrand} - {wheel.TirePressure} ¤|");
+
+                // Calculate the total pressure by adding each wheel's pressure to the total
+                totalPressure += wheel.TirePressure;
+            }
+
+            // Check if the total pressure is not within the expected range (184 to 200)
+            if (totalPressure > 200 || totalPressure < 184)
+            {
+                // If the total pressure is outside the range, suggest fixing the tire pressure
+                Console.WriteLine(FixTirePressure(totalPressure)); // The FixTirePressure method's logic should be implemented separately
+            }
+            // End of method
+        }
+
+        // Method to display information about the winter wheels
+        public void ShowWinterWheels(List<Wheel> winterWheels)
+        {
+            // Variable to store the total pressure of winter wheels
+            double totalPressure = 0;
+
+            // Display header indicating a change to winter wheels
+            Console.WriteLine("The wheels are changed to Winter:");
+
+            // Iterate through each wheel in the list of winter wheels
+            foreach (Wheel wheel in winterWheels)
+            {
+                // Display separator line for each wheel
+                Console.WriteLine("________________________________________");
+
+                // Display details of each winter wheel: ID, placement, type, brand, and pressure
+                Console.WriteLine($"{wheel.Id}: {wheel.TirePlacement} | {wheel.WheelType} | {wheel.TireBrand} - {wheel.TirePressure} ¤|");
+
+                // Calculate the total pressure by adding each wheel's pressure to the total
+                totalPressure += wheel.TirePressure;
+            }
+
+            // Check if the total pressure is not within the expected range (184 to 200)
+            if (totalPressure > 200 || totalPressure < 184)
+            {
+                // If the total pressure is outside the range, suggest
+            }
+            // End of method
+        }
+
+        // Method to display information about the whole-year wheels
+        public void ShowWholeYearWheels(List<Wheel> wholeYearWheels)
+        {
+            // Variable to store the total pressure of whole-year wheels
+            double totalPressure = 0;
+
+            // Clear the console before displaying whole-year wheel information
+            Console.Clear();
+
+            // Display header indicating a change to whole-year wheels
+            Console.WriteLine("The wheels are changed to Whole-year:");
+
+            // Iterate through each wheel in the list of whole-year wheels
+            foreach (Wheel wheel in wholeYearWheels)
+            {
+                // Display separator line for each wheel
+                Console.WriteLine("________________________________________");
+
+                // Display details of each whole-year wheel: ID, placement, type, brand, and pressure
+                Console.WriteLine($"{wheel.Id}: {wheel.TirePlacement} | {wheel.WheelType} | {wheel.TireBrand} - {wheel.TirePressure} ¤|");
+
+                // Calculate the total pressure by adding each wheel's pressure to the total
+                totalPressure += wheel.TirePressure;
+            }
+
+            // Check if the total pressure is not within the expected range (184 to 200)
+            if (totalPressure > 200 || totalPressure < 184)
+            {
+                // If the total pressure is outside the range, suggest fixing the tire pressure
+                Console.WriteLine(FixTirePressure(totalPressure)); // The FixTirePressure method's logic should be implemented separately
             }
             // End of method
         }
@@ -257,6 +391,87 @@ namespace CarManagement.Services.Implementations
         #endregion
 
         #region Service Page (Methods for functional usage)
+
+        // Method to adjust the tire pressure
+        public string FixTirePressure(double totalPressure)
+        {
+            bool loop = true; // Boolean variable for the while loop
+
+            while (loop)
+            {
+                Console.Write("Press C to change the tire pressure: "); // Prompting the user for input
+                string input = Console.ReadLine().ToUpper(); // Reading user input and converting it to uppercase
+
+                double pressure; // Variable to store the calculated pressure
+
+                if (input == "C") // Check if the user input is 'C' for changing tire pressure
+                {
+                    loop = false; // Exit the loop as the user chose to change the pressure
+
+                    // Calculate the new tire pressure (totalPressure divided by 4)
+                    pressure = totalPressure / 4;
+
+                    // Return the new tire pressure as a string message
+                    return $"Tire pressure: {pressure}";
+                }
+                else
+                {
+                    Console.WriteLine("Wrong input!!..."); // Display error message for incorrect input
+                    loop = true; // Restart the loop due to incorrect input
+                }
+            }
+            return ""; // Default return value
+
+            // End of method
+        }
+
+
+        // Method to facilitate changing wheels
+        public int ChangeWheels()
+        {
+
+            // Convert wheel types to strings for display
+            string summer = Enums.Wheel.WheelTypeEnum.Summer.ToString();
+            string winter = Enums.Wheel.WheelTypeEnum.Winter.ToString();
+            string wholeYear = Enums.Wheel.WheelTypeEnum.WholeYear.ToString();
+
+            string[] wheelTypes = { summer, winter, wholeYear }; // Array containing different wheel types
+            int id = 1; // ID for each wheel type
+
+            Console.WriteLine();
+
+            // Display available wheel types with their corresponding IDs
+            foreach (string wheelType in wheelTypes)
+            {
+                Console.WriteLine($"{id}: {wheelType}"); // Displaying each wheel type with an ID
+                id++;
+            }
+
+            bool loop = true; // Boolean variable for the while loop
+
+            // Loop until the user provides a valid choice
+            while (loop)
+            {
+                Console.Write("\nChoose the specific ID of the wheel set you want to change to: ");
+                int input = int.Parse(Console.ReadLine()); // Read user input
+
+                // Check if the input corresponds to a valid wheel set ID
+                if (input == 1 || input == 2 || input == 3)
+                {
+                    return input; // Return the chosen wheel set ID
+                }
+                else
+                {
+                    Console.WriteLine("Something went wrong... Try again"); // Display error message for invalid input
+                    loop = true; // Restart the loop due to invalid input
+                }
+            }
+            return 1; // Default return value
+
+            // End of method
+        }
+
+
         // Method to simulate changing oil
         public string ChangeOil(string oilQuality)
         {
@@ -337,8 +552,8 @@ namespace CarManagement.Services.Implementations
                 // Display different specifications of the car
                 Console.WriteLine($"{car.Brand}: {car.Model}"); // Display brand and model of the car
                 Console.WriteLine($"Horse Power: {car.HorsePower} HK"); // Display the car's horsepower
-                Console.WriteLine($"Tyre Size: {car.TyreSize}"); // Display tyre size of the car
-                Console.WriteLine($"Tyre pressure between: {car.TyrePressureMin} - {car.TyrePressureMax}"); // Display tyre pressure range
+                Console.WriteLine($"Tire Size: {car.TireSize}"); // Display Tire size of the car
+                Console.WriteLine($"Tire pressure between: {car.TirePressureMin} - {car.TirePressureMax}"); // Display Tire pressure range
                 Console.WriteLine($"Oil capacity: {car.TotalOilCapacity} L"); // Display oil capacity of the car
                 Console.WriteLine($"Number Of Lights: {car.NumberOfLights}"); // Display number of lights on the car
             }

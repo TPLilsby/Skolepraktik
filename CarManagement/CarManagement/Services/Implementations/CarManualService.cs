@@ -25,10 +25,10 @@ namespace CarManagement.Services.Implementations
         {
             // Creating specific instances of cars
             Car fordTransitCustom = new Car(1, "Ford", "Transit Custom", 130,
-                Enums.Wheel.TyreSizeEnum.Sixteen, 40, 60, 9.80, 8); // Ford Transit Custom
+                Enums.Wheel.TireSizeEnum.Sixteen, 40, 60, 9.80, 8); // Ford Transit Custom
 
             Car toyotaYaris = new Car(2, "Toyota", "Yaris", 72,
-                Enums.Wheel.TyreSizeEnum.Fiveteen, 30, 50, 2.80, 8); // and Toyota Yaris
+                Enums.Wheel.TireSizeEnum.Fiveteen, 30, 50, 2.80, 8); // and Toyota Yaris
 
             // Adds the newly created cars to the general list of cars
             cars.Add(fordTransitCustom); // Adding Ford Transit Custom to the list of cars

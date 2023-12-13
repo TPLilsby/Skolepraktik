@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CarManagement.Enums.Wheel
 {
     // Internal enumeration representing various sizes of tires
-    internal enum TyreSizeEnum
+    internal enum TireSizeEnum
     {
         Fiveteen = 15,  // Represents a tire size with a diameter of 15 inches
         Sixteen = 16,   // Represents a tire size with a diameter of 16 inches
