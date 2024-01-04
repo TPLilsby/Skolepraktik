@@ -65,6 +65,11 @@ namespace CarManagement.Services.Implementations
         // Method to display information about all the wheels of a car to the user
         public void ShowAllWheels(List<Wheel> wheels)
         {
+
+            File.WriteAllText(@"C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\TextDocuments\Payments.txt", string.Empty);
+            File.WriteAllText(@"C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\TextDocuments\ServiceReview.txt", string.Empty);
+
+
             double totalPressure = 0; // Variable to store the total pressure of all wheels
 
             // Display a message indicating the displayed wheels belong to a car
@@ -82,34 +87,28 @@ namespace CarManagement.Services.Implementations
             }
 
 
-            bool changeLoop = true; // Boolean variable for the while loop to handle tire change prompt
+            bool changeLoop = true; // Loop control variable for tire change prompt
 
-            // Loop to prompt the user for tire change preference
+            // Continuously prompt the user for tire change preference until valid input is received
             while (changeLoop)
             {
-                Console.Write("Do you want to change to another set of tires? (Yes/Y | No/N): ");
-                string input = Console.ReadLine().ToUpper(); // Read user input and convert to uppercase
+                Console.Write("Choose 1 (To Change) | Choose 2 (to not change): ");
+                int input = int.Parse(Console.ReadLine()); // Read user input for preference
 
-                if (input == "Y")
+                if (input == 1)
                 {
-                    changeLoop = false; // Exit the loop to change the wheels if the user selects 'Yes'
-
-                    ChangeWheels(); // Call the method to change the wheels
+                    changeLoop = false; // Exit loop if the user chooses to change tires
                 }
-                else if (input == "N")
+                else if (input == 2)
                 {
-                    changeLoop = false;
-                    // Check if the total pressure is not within the expected range (184 to 200)
-                    if (totalPressure > 200 || totalPressure < 184)
-                    {
-                        // If the total pressure is outside the range, suggest fixing the tire pressure
-                        Console.WriteLine(FixTirePressure(totalPressure));
-                    }
+                    // If the user opts not to change, adjust the tire pressure and display the result
+                    Console.WriteLine(FixTirePressure(totalPressure));
+                    changeLoop = false; // Exit loop
                 }
                 else
                 {
-                    Console.WriteLine("Wrong input... try again"); // Display error message for incorrect input
-                    changeLoop = true; // Restart the loop due to incorrect input
+                    Console.WriteLine("Wrong input try again...."); // Display error for invalid input
+                    changeLoop = true; // Restart loop for incorrect input
                 }
             }
 
@@ -119,95 +118,149 @@ namespace CarManagement.Services.Implementations
         // Method to display information about the summer wheels
         public void ShowSummerWheels(List<Wheel> summerWheels)
         {
+            Console.Clear();
+
             // Variable to store the total pressure of summer wheels
             double totalPressure = 0;
+            double payment = 149.95;
 
             // Display header indicating a change to summer wheels
-            Console.WriteLine("The wheels are changed to Summer:");
+            Console.WriteLine($"The wheels are changed to Summer | Costs {payment}:");
 
-            // Iterate through each wheel in the list of summer wheels
-            foreach (Wheel wheel in summerWheels)
+            // Writing the payment amount to the file
+            string paymentsFilePath = @"C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\TextDocuments\Payments.txt";
+            using (StreamWriter psw = File.AppendText(paymentsFilePath))
             {
-                // Display separator line for each wheel
-                Console.WriteLine("________________________________________");
-
-                // Display details of each summer wheel: ID, placement, type, brand, and pressure
-                Console.WriteLine($"{wheel.Id}: {wheel.TirePlacement} | {wheel.WheelType} | {wheel.TireBrand} - {wheel.TirePressure} ¤|");
-
-                // Calculate the total pressure by adding each wheel's pressure to the total
-                totalPressure += wheel.TirePressure;
+                psw.WriteLine(payment);
+                psw.Close();
             }
 
-            // Check if the total pressure is not within the expected range (184 to 200)
-            if (totalPressure > 200 || totalPressure < 184)
+            // Displaying summer wheels' details and writing them to a file
+            string summerWheelsFilePath = @"C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\TextDocuments\ServiceReview.txt";
+            using (StreamWriter summerWheelsWriter = File.AppendText(summerWheelsFilePath))
             {
-                // If the total pressure is outside the range, suggest fixing the tire pressure
-                Console.WriteLine(FixTirePressure(totalPressure)); // The FixTirePressure method's logic should be implemented separately
+                summerWheelsWriter.WriteLine("\nSummer Wheels:");
+
+                // Iterate through each wheel in the list of summer wheels
+                foreach (Wheel wheel in summerWheels)
+                {
+                    // Display separator line for each wheel
+                    Console.WriteLine("________________________________________");
+
+                    // Display details of each summer wheel: ID, placement, type, brand, and pressure
+                    Console.WriteLine($"{wheel.Id}: {wheel.TirePlacement} | {wheel.WheelType} | {wheel.TireBrand} - {wheel.TirePressure} ¤|");
+
+                    // Write details to the file
+                    summerWheelsWriter.WriteLine("________________________________________");
+                    summerWheelsWriter.WriteLine($"{wheel.Id}: {wheel.TirePlacement} | {wheel.WheelType} | {wheel.TireBrand} - {wheel.TirePressure} ¤|");
+
+                    // Calculate the total pressure by adding each wheel's pressure to the total
+                    totalPressure += wheel.TirePressure;
+                }
+                summerWheelsWriter.Close();
             }
+
+            Console.WriteLine(FixTirePressure(totalPressure)); // The FixTirePressure method's logic should be implemented separately
             // End of method
         }
 
         // Method to display information about the winter wheels
         public void ShowWinterWheels(List<Wheel> winterWheels)
         {
+            Console.Clear();
+
             // Variable to store the total pressure of winter wheels
             double totalPressure = 0;
+            double payment = 149.95;
 
             // Display header indicating a change to winter wheels
-            Console.WriteLine("The wheels are changed to Winter:");
+            Console.WriteLine($"The wheels are changed to Winter | Costs {payment}:");
 
-            // Iterate through each wheel in the list of winter wheels
-            foreach (Wheel wheel in winterWheels)
+            // Writing the payment amount to the file
+            string paymentsFilePath = @"C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\TextDocuments\Payments.txt";
+            using (StreamWriter psw = File.AppendText(paymentsFilePath))
             {
-                // Display separator line for each wheel
-                Console.WriteLine("________________________________________");
-
-                // Display details of each winter wheel: ID, placement, type, brand, and pressure
-                Console.WriteLine($"{wheel.Id}: {wheel.TirePlacement} | {wheel.WheelType} | {wheel.TireBrand} - {wheel.TirePressure} ¤|");
-
-                // Calculate the total pressure by adding each wheel's pressure to the total
-                totalPressure += wheel.TirePressure;
+                psw.WriteLine(payment);
             }
 
-            // Check if the total pressure is not within the expected range (184 to 200)
-            if (totalPressure > 200 || totalPressure < 184)
+            // Displaying winter wheels' details and writing them to a file
+            string winterWheelsFilePath = @"C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\TextDocuments\ServiceReview.txt";
+            using (StreamWriter winterWheelsWriter = File.AppendText(winterWheelsFilePath))
             {
-                // If the total pressure is outside the range, suggest
+                winterWheelsWriter.WriteLine("\nWiner Wheels:");
+
+                // Iterate through each wheel in the list of winter wheels
+                foreach (Wheel wheel in winterWheels)
+                {
+                    // Display separator line for each wheel
+                    Console.WriteLine("________________________________________");
+
+                    // Display details of each winter wheel: ID, placement, type, brand, and pressure
+                    Console.WriteLine($"{wheel.Id}: {wheel.TirePlacement} | {wheel.WheelType} | {wheel.TireBrand} - {wheel.TirePressure} ¤|");
+
+                    // Write details to the file
+                    winterWheelsWriter.WriteLine("________________________________________");
+                    winterWheelsWriter.WriteLine($"{wheel.Id}: {wheel.TirePlacement} | {wheel.WheelType} | {wheel.TireBrand} - {wheel.TirePressure} ¤|");
+
+                    // Calculate the total pressure by adding each wheel's pressure to the total
+                    totalPressure += wheel.TirePressure;
+                }
             }
+
+            Console.WriteLine(FixTirePressure(totalPressure)); // The FixTirePressure method's logic should be implemented separately
             // End of method
         }
 
         // Method to display information about the whole-year wheels
         public void ShowWholeYearWheels(List<Wheel> wholeYearWheels)
         {
-            // Variable to store the total pressure of whole-year wheels
-            double totalPressure = 0;
-
-            // Clear the console before displaying whole-year wheel information
+            // Clear the console screen
             Console.Clear();
 
+            // Variable to store the total pressure of winter wheels
+            double totalPressure = 0;
+            double payment = 149.95;
+
             // Display header indicating a change to whole-year wheels
-            Console.WriteLine("The wheels are changed to Whole-year:");
+            Console.WriteLine($"The wheels are changed to Whole Year | Costs {payment}:");
 
-            // Iterate through each wheel in the list of whole-year wheels
-            foreach (Wheel wheel in wholeYearWheels)
+            // File path for storing payment information
+            string paymentsFilePath = @"C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\TextDocuments\Payments.txt";
+
+            // Writing the payment amount to the file
+            using (StreamWriter psw = File.AppendText(paymentsFilePath))
             {
-                // Display separator line for each wheel
-                Console.WriteLine("________________________________________");
-
-                // Display details of each whole-year wheel: ID, placement, type, brand, and pressure
-                Console.WriteLine($"{wheel.Id}: {wheel.TirePlacement} | {wheel.WheelType} | {wheel.TireBrand} - {wheel.TirePressure} ¤|");
-
-                // Calculate the total pressure by adding each wheel's pressure to the total
-                totalPressure += wheel.TirePressure;
+                psw.WriteLine(payment);
             }
 
-            // Check if the total pressure is not within the expected range (184 to 200)
-            if (totalPressure > 200 || totalPressure < 184)
+            // File path for storing whole-year wheels' details
+            string wholeYearWheelsFilePath = @"C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\TextDocuments\ServiceReview.txt";
+
+            // Displaying whole-year wheels' details and writing them to a file
+            using (StreamWriter wholeYearWheelsWriter = File.AppendText(wholeYearWheelsFilePath))
             {
-                // If the total pressure is outside the range, suggest fixing the tire pressure
-                Console.WriteLine(FixTirePressure(totalPressure)); // The FixTirePressure method's logic should be implemented separately
+                wholeYearWheelsWriter.WriteLine("\nWhole-Year Wheels:");
+
+                // Iterate through each wheel in the list of whole-year wheels
+                foreach (Wheel wheel in wholeYearWheels)
+                {
+                    // Display separator line for each wheel
+                    Console.WriteLine("________________________________________");
+
+                    // Display details of each whole-year wheel: ID, placement, type, brand, and pressure
+                    Console.WriteLine($"{wheel.Id}: {wheel.TirePlacement} | {wheel.WheelType} | {wheel.TireBrand} - {wheel.TirePressure} ¤|");
+
+                    // Write details to the file
+                    wholeYearWheelsWriter.WriteLine("________________________________________");
+                    wholeYearWheelsWriter.WriteLine($"{wheel.Id}: {wheel.TirePlacement} | {wheel.WheelType} | {wheel.TireBrand} - {wheel.TirePressure} ¤|");
+
+                    // Calculate the total pressure by adding each wheel's pressure to the total
+                    totalPressure += wheel.TirePressure;
+                }
             }
+
+
+            Console.WriteLine(FixTirePressure(totalPressure)); // The FixTirePressure method's logic should be implemented separately
             // End of method
         }
 
@@ -228,7 +281,7 @@ namespace CarManagement.Services.Implementations
             int randomOilQuality = rndOilQuality.Next(1, 4);
 
             // Generate a random number between 0-12 to simulate the amount of oil left in the car
-            Random rndOilCapacity = new Random();
+             Random rndOilCapacity = new Random();
             double randomOilCapacity = rndOilCapacity.Next(0, 12);
 
             // Check different oil qualities
@@ -276,7 +329,7 @@ namespace CarManagement.Services.Implementations
                     // If the user inputs 'r' to refill the oil
                     if (userInput == 'r')
                     {
-                        Console.WriteLine($"Refilled oil: {RefillOil(randomOilCapacity)}L"); // Simulate refilling the oil
+                        Console.WriteLine($"{RefillOil(randomOilCapacity)}"); // Simulate refilling the oil
                         refillLoop = false; // Exit the loop after refilling
                     }
                     // If the user input is not 'r'
@@ -340,7 +393,7 @@ namespace CarManagement.Services.Implementations
                     // If the user inputs 'r' to refill the oil
                     if (userInput == 'r')
                     {
-                        Console.WriteLine($"Refilled oil: {RefillOil(randomOilCapacity)}L"); // Simulate refilling the oil
+                        Console.WriteLine($"{RefillOil(randomOilCapacity)}"); // Simulate refilling the oil
                         refillLoop = false; // Exit the loop after refilling
                     }
                     // If the user input is not 'r'
@@ -374,7 +427,7 @@ namespace CarManagement.Services.Implementations
                     // If the user inputs 'r' to refill the oil
                     if (userInput == 'r')
                     {
-                        Console.WriteLine($"Refilled oil: {RefillOil(randomOilCapacity)}L"); // Simulate refilling the oil
+                        Console.WriteLine($"{RefillOil(randomOilCapacity)}"); // Simulate refilling the oil
                         refillLoop = false; // Exit the loop after refilling
                     }
                     // If the user input is not 'r'
@@ -388,6 +441,22 @@ namespace CarManagement.Services.Implementations
             }
             // End of Method
         }
+        
+        public void ShowTotalPayment(double totalPayment)
+        {
+
+            // Displaying total payment details and writing them to a file
+            string ServiceOverviewFilePath = @"C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\TextDocuments\ServiceReview.txt";
+            using (StreamWriter totalPaymentWriter = File.AppendText(ServiceOverviewFilePath))
+            {
+
+                Console.WriteLine($"\nTotal payment: {totalPayment}");
+
+                totalPaymentWriter.WriteLine($"\nTotal payment: {totalPayment}");
+
+
+            }
+        }
         #endregion
 
         #region Service Page (Methods for functional usage)
@@ -399,20 +468,37 @@ namespace CarManagement.Services.Implementations
 
             while (loop)
             {
-                Console.Write("Press C to change the tire pressure: "); // Prompting the user for input
+                Console.Write("\nPress C to change the tire pressure: "); // Prompting the user for input
                 string input = Console.ReadLine().ToUpper(); // Reading user input and converting it to uppercase
 
                 double pressure; // Variable to store the calculated pressure
+                double payment;
 
                 if (input == "C") // Check if the user input is 'C' for changing tire pressure
                 {
-                    loop = false; // Exit the loop as the user chose to change the pressure
+                    payment = 15;
 
                     // Calculate the new tire pressure (totalPressure divided by 4)
                     pressure = totalPressure / 4;
 
+
+                    // Writing the payment amount to the file
+                    string paymentsFilePath = @"C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\TextDocuments\Payments.txt";
+                    using (StreamWriter psw = File.AppendText(paymentsFilePath))
+                    {
+                        psw.WriteLine(payment);
+                    }
+
+                    // Displaying tire pressure details and writing them to a file
+                    string ServiceOverviewFilePath = @"C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\TextDocuments\ServiceReview.txt";
+                    using (StreamWriter pressureWriter = File.AppendText(ServiceOverviewFilePath))
+                    {
+                        pressureWriter.WriteLine("\nChanged Pressure: ");
+                        pressureWriter.WriteLine($"Tire pressure is changed to: {pressure} | Costs {payment}");
+                    }
+
                     // Return the new tire pressure as a string message
-                    return $"Tire pressure: {pressure}";
+                    return $"Tire pressure is changed to: {pressure} | Costs {payment}";
                 }
                 else
                 {
@@ -425,8 +511,26 @@ namespace CarManagement.Services.Implementations
             // End of method
         }
 
+        // Method to prompt the user for a choice to change tires
+        public string ChooseToChange()
+        {
+            // Prompting the user to choose whether they want to change tires or not
+            Console.Write("\nDo you want to change tires? (Y/Yes - N/No): ");
 
-        // Method to facilitate changing wheels
+            // Reading user input and converting it to uppercase for consistency
+            string input = Console.ReadLine().ToUpper();
+
+            // Validating the user's input
+            if (input == "Y" || input == "N")
+            {
+                return input; // Returning the user's choice
+            }
+
+            // If the input is not Y or N, defaulting to 'Y'
+            return "Y";
+        }
+
+        // Method to simulate changing wheels
         public int ChangeWheels()
         {
 
@@ -486,6 +590,8 @@ namespace CarManagement.Services.Implementations
             // Boolean variable for the while loop
             bool loop = true;
 
+            double payment = 49.95;
+
             // Loop until the user confirms the oil change
             while (loop)
             {
@@ -505,16 +611,33 @@ namespace CarManagement.Services.Implementations
 
                     // Set the variable to false to exit the loop as the user confirms the oil change
                     loop = false;
+
                 }
             }
 
+            // Writing the payment amount to the file
+            string paymentsFilePath = @"C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\TextDocuments\Payments.txt";
+            using (StreamWriter psw = File.AppendText(paymentsFilePath))
+            {
+                psw.WriteLine(payment);
+            }
+
+            // Displaying oil quality details and writing them to a file
+            string ServiceOverviewFilePath = @"C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\TextDocuments\ServiceReview.txt";
+            using (StreamWriter qualityWriter = File.AppendText(ServiceOverviewFilePath))
+            {
+                qualityWriter.WriteLine("\nOil Quality:");
+                qualityWriter.WriteLine($"Oil is now changed from {oilQuality} to {OilQualityEnum.Good.ToString()} | Costs: {payment}");
+            }
+
             // Return a message indicating the oil quality changed to "good"
-            return $"Oil is now changed from {oilQuality} to {OilQualityEnum.Good.ToString()}";
+            return $"Oil is now changed from {oilQuality} to {OilQualityEnum.Good.ToString()} | Costs: {payment}";
+
             //End of Method
         }
 
         // Method to simulate refilling oil
-        public double RefillOil(double oilAmount)
+        public string RefillOil(double oilAmount)
         {
             Console.WriteLine("What is the total capacity on the car? - Min 12 L");
             double totalAmount = double.Parse(Console.ReadLine());
@@ -523,8 +646,25 @@ namespace CarManagement.Services.Implementations
             // Calculate how much oil is refilled by subtracting the current amount from the total
             double refilledOil = totalAmount - oilAmount;
 
+            double payment = refilledOil * 4.3;
+
+            // Writing the payment amount to the file
+            string paymentsFilePath = @"C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\TextDocuments\Payments.txt";
+            using (StreamWriter psw = File.AppendText(paymentsFilePath))
+            {
+                psw.WriteLine(payment);
+            }
+
+            // Displaying refilled oil details and writing them to a file
+            string ServiceOverviewFilePath = @"C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\TextDocuments\ServiceReview.txt";
+            using (StreamWriter refillWriter = File.AppendText(ServiceOverviewFilePath))
+            {
+                refillWriter.WriteLine("\nRefilled Oil:");
+                refillWriter.WriteLine($"Refilled oil: {refilledOil}L | Costs: {payment}");
+            }
+
             // Return the amount of oil refilled
-            return refilledOil;
+            return $"Refilled oil: {refilledOil}L | Costs: {payment}";
             // End of Method
         }
         #endregion

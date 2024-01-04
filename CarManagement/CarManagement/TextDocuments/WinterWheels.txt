@@ -1,0 +1,16 @@
+________________________________________
+1: FrontLeft | Winter | Bridgestone - 50 ¤|
+________________________________________
+2: FrontRight | Winter | Bridgestone - 53 ¤|
+________________________________________
+3: RearLeft | Winter | Bridgestone - 54 ¤|
+________________________________________
+4: RearRight | Winter | Bridgestone - 41 ¤|
+________________________________________
+1: FrontLeft | Winter | Bridgestone - 53 ¤|
+________________________________________
+2: FrontRight | Winter | Bridgestone - 57 ¤|
+________________________________________
+3: RearLeft | Winter | Bridgestone - 45 ¤|
+________________________________________
+4: RearRight | Winter | Bridgestone - 57 ¤|

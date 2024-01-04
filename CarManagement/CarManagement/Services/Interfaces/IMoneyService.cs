@@ -9,7 +9,6 @@ namespace CarManagement.Services.Interfaces
     // Internal interface for MoneyService
     internal interface IMoneyService
     {
-        // This interface currently has no defined methods or properties
-        // It's an empty interface
+        public double CaculatePayment();
     }
 }

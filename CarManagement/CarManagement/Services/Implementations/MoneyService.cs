@@ -10,6 +10,20 @@ namespace CarManagement.Services.Implementations
     // Internal class representing a MoneyService implementation
     internal class MoneyService : IMoneyService
     {
-        // This class currently doesn't contain any additional code or members
+        public MoneyService() { }
+
+        public double CaculatePayment()
+        {
+            var payments = File.ReadLines(@"C:\\Users\\zbctoli\\Documents\\GitHub\\Skolepraktik\\CarManagement\\CarManagement\\TextDocuments\\Payments.txt");
+
+            double totalPayment = 0;
+
+            foreach (var payment in payments)
+            {
+                totalPayment += double.Parse(payment);
+            }
+
+            return totalPayment;
+        }
     }
 }

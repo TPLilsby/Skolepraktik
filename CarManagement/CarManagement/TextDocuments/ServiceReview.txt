@@ -1,0 +1,9 @@
+
+Changed Pressure: 
+Tire pressure is changed to: 50,25 | Costs 15
+
+Oil Quality:
+Oil is now changed from Okay to Good | Costs: 49,95
+
+Refilled Oil:
+Refilled oil: 11L | Costs: 47,3

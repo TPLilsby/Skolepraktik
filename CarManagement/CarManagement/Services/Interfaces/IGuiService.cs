@@ -31,13 +31,15 @@ namespace CarManagement.Services.Interfaces
 
         void ShowOilQuality(List<Oil> oilQualities); // Method to display oil quality information
 
+        void ShowTotalPayment(double totalPayment);
+
         // Methods for simulating actions related to car maintenance
         string FixTirePressure(double totalPressure); // Method to fix tire pressure
+        string ChooseToChange(); // Method to prompt the user for tire change preference
         int ChangeWheels(); // Method to initiate the process of changing wheels
         string ChangeOil(string oilQuality); // Method to simulate changing the oil quality
-        double RefillOil(double oilAmount); // Method to simulate refilling the oil
+        string RefillOil(double oilAmount); // Method to simulate refilling the oil
         #endregion
-
 
         #region Manual Page
         // Method declarations for displaying information about available cars

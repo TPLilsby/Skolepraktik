@@ -20,6 +20,9 @@ namespace CarManagement.Services.Implementations
         // List to store specific instances of a Toyota Yaris
         List<Car> toyotaYarisList = new List<Car>();
 
+        // List to store specific instances of a Kia Rio
+        List<Car> kiaRioList = new List<Car>();
+
         // Constructor for CarManualService class
         public CarManualService()
         {
@@ -30,15 +33,23 @@ namespace CarManagement.Services.Implementations
             Car toyotaYaris = new Car(2, "Toyota", "Yaris", 72,
                 Enums.Wheel.TireSizeEnum.Fiveteen, 30, 50, 2.80, 8); // and Toyota Yaris
 
+            Car kiaRio = new Car(3, "Kia", "Rio", 110, 
+                Enums.Wheel.TireSizeEnum.Fourteen, 30, 55, 5.30, 8); // and Kia Rio
+
             // Adds the newly created cars to the general list of cars
             cars.Add(fordTransitCustom); // Adding Ford Transit Custom to the list of cars
             cars.Add(toyotaYaris); // Adding Toyota Yaris to the list of cars
+            cars.Add(kiaRio); // Adding Kia Rio to the list of cars
 
             // Adds the Ford Transit Custom instance to its specific list
             fordTransitCustomList.Add(fordTransitCustom); // Adding Ford Transit Custom to its specific list
 
             // Adds the Toyota Yaris instance to its specific list
             toyotaYarisList.Add(toyotaYaris); // Adding Toyota Yaris to its specific list
+
+            // Adds the Kia Rio instance to its specific list
+            kiaRioList.Add(kiaRio); // Adding Kia Rio to its specific list
+
         }
 
         // Method to retrieve the general list of cars
@@ -68,6 +79,9 @@ namespace CarManagement.Services.Implementations
                     return toyotaYarisList; // Returns specific car details if the ID matches
 
                 case 3:
+                    return kiaRioList;
+
+                case 4:
                     return cars;
 
                 // Default case when the entered ID doesn't match any predefined cases
