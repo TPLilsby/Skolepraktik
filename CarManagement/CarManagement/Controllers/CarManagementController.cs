@@ -74,6 +74,7 @@ namespace CarManagement.Controllers
                     this._guiService.ShowOilQuality(this._carPartsService.GetOil());
                 }
 
+                // Shows the total payment using the MoneyService
                 this._guiService.ShowTotalPayment(this._moneyService.CaculatePayment());
             }
             else if (input == 2)

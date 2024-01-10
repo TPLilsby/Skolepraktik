@@ -9,6 +9,6 @@ namespace CarManagement.Services.Interfaces
     // Internal interface for MoneyService
     internal interface IMoneyService
     {
-        public double CaculatePayment();
+        public double CaculatePayment(); // Method to calculate the payment
     }
 }

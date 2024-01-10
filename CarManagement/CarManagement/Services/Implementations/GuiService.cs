@@ -442,19 +442,21 @@ namespace CarManagement.Services.Implementations
             // End of Method
         }
         
+        // Method to show the total payments
         public void ShowTotalPayment(double totalPayment)
         {
 
-            // Displaying total payment details and writing them to a file
+            // File path for service overview
             string ServiceOverviewFilePath = @"C:\Users\zbctoli\Documents\GitHub\Skolepraktik\CarManagement\CarManagement\TextDocuments\ServiceReview.txt";
+
+            // Displaying total payment details and writing them to a file
             using (StreamWriter totalPaymentWriter = File.AppendText(ServiceOverviewFilePath))
             {
-
+                // Displays the total payment in the console
                 Console.WriteLine($"\nTotal payment: {totalPayment}");
 
+                // Writes the total payment to the overview file
                 totalPaymentWriter.WriteLine($"\nTotal payment: {totalPayment}");
-
-
             }
         }
         #endregion

@@ -31,7 +31,7 @@ namespace CarManagement.Services.Interfaces
 
         void ShowOilQuality(List<Oil> oilQualities); // Method to display oil quality information
 
-        void ShowTotalPayment(double totalPayment);
+        void ShowTotalPayment(double totalPayment); // Method to display the total payment
 
         // Methods for simulating actions related to car maintenance
         string FixTirePressure(double totalPressure); // Method to fix tire pressure
