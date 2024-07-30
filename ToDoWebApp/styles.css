@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+input {
+    padding: 10px;
+    margin: 10px 0;
+}
+
+button {
+    padding: 10px;
+    margin: 5px;
+}
+
+#task-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#task-list li {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+}
+
+#task-list .completed {
+    text-decoration: line-through;
+    color: grey;
+    background-color: #d4edda; /* Grøn baggrund for fuldførte opgaver */
+}
+
+#task-list .incomplete {
+    background-color: #f8d7da; /* Rød baggrund for ikke-fuldførte opgaver */
+}
+
+.edit-input {
+    display: none;
+}
