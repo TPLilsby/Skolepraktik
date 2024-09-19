@@ -1,192 +1,93 @@
-document.addEventListener('DOMContentLoaded', loadTasks);
+document.getElementById('register-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const username = document.getElementById('register-username').value;
+    const password = document.getElementById('register-password').value;
 
-function loadTasks() {
-    fetch('http://localhost:3000/tasks')
-        .then(response => response.json())
-        .then(tasks => {
-            tasks.forEach(task => addTaskToDOM(task));
-        })
-        .catch(error => console.error('Error: ', error));
-}
-
-document.querySelector('#new-task-form').addEventListener('submit', event => {
-    event.preventDefault();
-    const taskText = document.querySelector('#new-task').value.trim();
-    if (taskText) {
-        const task = { text: taskText, completed: false };
-        fetch('http://localhost:3000/tasks', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(task)
-        })
-        .then(response => response.json())
-        .then(savedTask => {
-            addTaskToDOM(savedTask);
-            document.querySelector('#new-task').value = '';
-        })
-        .catch(error => console.error('Error: ', error));
-    }
-});
-
-function addTaskToDOM(task) {
-    const taskList = document.querySelector('#task-list');
-    const taskItem = document.createElement('li');
-    taskItem.textContent = task.text;
-    taskItem.dataset.id = task.id;
-    updateTaskClass(taskItem, task.completed);
-
-    const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Delete';
-    deleteButton.addEventListener('click', () => {
-        deleteTask(task.id, taskItem);
-    });
-
-    const toggleButton = document.createElement('button');
-    toggleButton.textContent = task.completed ? 'Undo' : 'Complete';
-    toggleButton.addEventListener('click', () => {
-        toggleTask(task, taskItem, toggleButton);
-    });
-
-    const editButton = document.createElement('button');
-    editButton.textContent = 'Edit';
-    editButton.addEventListener('click', () => {
-        editTask(task, taskItem, editButton);
-    });
-
-    taskItem.appendChild(toggleButton);
-    taskItem.appendChild(editButton);
-    taskItem.appendChild(deleteButton);
-    taskList.appendChild(taskItem);
-}
-
-function updateTaskClass(taskItem, completed) {
-    if (completed) {
-        taskItem.classList.add('completed');
-        taskItem.classList.remove('incomplete');
-    } else {
-        taskItem.classList.add('incomplete');
-        taskItem.classList.remove('completed');
-    }
-}
-
-function deleteTask(id, taskItem) {
-    fetch(`http://localhost:3000/tasks/${id}`, {
-        method: 'DELETE'
-    })
-    .then(() => {
-        taskItem.remove();
-    })
-    .catch(error => console.error('Error: ', error));
-}
-
-function toggleTask(task, taskItem, toggleButton) {
-    task.completed = !task.completed;
-    fetch(`http://localhost:3000/tasks/${task.id}`, {
-        method: 'PUT',
+    const response = await fetch('http://localhost:3000/register', {
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(task)
-    })
-    .then(response => response.json())
-    .then(updatedTask => {
-        // Clear existing content and recreate item
-        taskItem.innerHTML = '';
+        body: JSON.stringify({ username, password })
+    });
 
-        // Add updated text and class
-        taskItem.textContent = updatedTask.text;
-        taskItem.dataset.id = updatedTask.id;
-        updateTaskClass(taskItem, updatedTask.completed);
+    const data = await response.json();
+    console.log('Register response:', data);
+});
 
-        // Recreate buttons
-        const toggleButton = document.createElement('button');
-        toggleButton.textContent = updatedTask.completed ? 'Undo' : 'Complete';
-        toggleButton.addEventListener('click', () => {
-            toggleTask(updatedTask, taskItem, toggleButton);
-        });
+document.getElementById('login-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const username = document.getElementById('login-username').value;
+    const password = document.getElementById('login-password').value;
 
-        const editButton = document.createElement('button');
-        editButton.textContent = 'Edit';
-        editButton.addEventListener('click', () => {
-            editTask(updatedTask, taskItem, editButton);
-        });
+    const response = await fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, password })
+    });
 
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
-        deleteButton.addEventListener('click', () => {
-            deleteTask(updatedTask.id, taskItem);
-        });
+    const data = await response.json();
+    console.log('Login response:', data);
 
-        // Append buttons to taskItem
-        taskItem.appendChild(toggleButton);
-        taskItem.appendChild(editButton);
-        taskItem.appendChild(deleteButton);
-    })
-    .catch(error => console.error('Error: ', error));
-}
+    if (data.token) {
+        localStorage.setItem('token', data.token);
+        showTaskForm();
+    } else {
+        alert('Login failed');
+    }
+});
 
-function editTask(task, taskItem, editButton) {
-    // Create input field for editing
-    const inputField = document.createElement('input');
-    inputField.type = 'text';
-    inputField.value = task.text;
+document.getElementById('task-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const text = document.getElementById('task-text').value;
+    const token = localStorage.getItem('token');
 
-    // Create save button
-    const saveButton = document.createElement('button');
-    saveButton.textContent = 'Save';
-    saveButton.addEventListener('click', () => {
-        const updatedText = inputField.value.trim();
-        if (updatedText) {
-            task.text = updatedText;
-            fetch(`http://localhost:3000/tasks/${task.id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(task)
-            })
-            .then(response => response.json())
-            .then(updatedTask => {
-                // Clear existing content and recreate item
-                taskItem.innerHTML = '';
+    const response = await fetch('http://localhost:3000/tasks', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ text, completed: false })
+    });
 
-                // Add updated text and class
-                taskItem.textContent = updatedTask.text;
-                taskItem.dataset.id = updatedTask.id;
-                updateTaskClass(taskItem, updatedTask.completed);
+    const data = await response.json();
+    console.log('Add task response:', data);
+    loadTasks();
+});
 
-                // Recreate buttons
-                const toggleButton = document.createElement('button');
-                toggleButton.textContent = updatedTask.completed ? 'Undo' : 'Complete';
-                toggleButton.addEventListener('click', () => {
-                    toggleTask(updatedTask, taskItem, toggleButton);
-                });
+async function loadTasks() {
+    const token = localStorage.getItem('token');
 
-                const editButton = document.createElement('button');
-                editButton.textContent = 'Edit';
-                editButton.addEventListener('click', () => {
-                    editTask(updatedTask, taskItem, editButton);
-                });
-
-                const deleteButton = document.createElement('button');
-                deleteButton.textContent = 'Delete';
-                deleteButton.addEventListener('click', () => {
-                    deleteTask(updatedTask.id, taskItem);
-                });
-
-                // Append buttons to taskItem
-                taskItem.appendChild(toggleButton);
-                taskItem.appendChild(editButton);
-                taskItem.appendChild(deleteButton);
-            })
-            .catch(error => console.error('Error: ', error));
+    const response = await fetch('http://localhost:3000/tasks', {
+        headers: {
+            'Authorization': `Bearer ${token}`
         }
     });
 
-    // Clear existing content and add input field and save button
-    taskItem.innerHTML = '';
-    taskItem.appendChild(inputField);
-    taskItem.appendChild(saveButton);
+    const tasks = await response.json();
+    const taskList = document.getElementById('task-list');
+    taskList.innerHTML = '';
+
+    tasks.forEach(task => {
+        const li = document.createElement('li');
+        li.textContent = task.text;
+        taskList.appendChild(li);
+    });
 }
+
+function showTaskForm() {
+    document.getElementById('register-form-container').style.display = 'none';
+    document.getElementById('login-form-container').style.display = 'none';
+    document.getElementById('task-form-container').style.display = 'block';
+    loadTasks();
+}
+
+// Load tasks on page load if token exists
+document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('token')) {
+        showTaskForm();
+    }
+});

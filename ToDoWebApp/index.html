@@ -8,11 +8,37 @@
 </head>
 <body>
     <h1>To-Do Liste</h1>
-    <form id="new-task-form">
-        <input type="text" id="new-task" placeholder="Tilføj en ny opgave">
-        <button type="submit">Tilføj Opgave</button>
-    </form>
-    <ul id="task-list"></ul>
+
+    <!-- Registreringsformular -->
+    <div id="register-form-container">
+        <h2>Register</h2>
+        <form id="register-form">
+            <input type="text" id="register-username" placeholder="Brugernavn" required>
+            <input type="password" id="register-password" placeholder="Adgangskode" required>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <!-- Login-formular -->
+    <div id="login-form-container">
+        <h2>Log ind</h2>
+        <form id="login-form">
+            <input type="text" id="login-username" placeholder="Brugernavn" required>
+            <input type="password" id="login-password" placeholder="Adgangskode" required>
+            <button type="submit">Log ind</button>
+        </form>
+    </div>
+
+    <!-- Opgaveformular -->
+    <div id="task-form-container" style="display:none;">
+        <h2>Tilføj Opgave</h2>
+        <form id="task-form">
+            <input type="text" id="task-text" placeholder="Ny opgave" required>
+            <button type="submit">Tilføj Opgave</button>
+        </form>
+        <ul id="task-list"></ul>
+    </div>
+
     <script src="scripts.js"></script>
 </body>
 </html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcode Scanner</title>
+    <style>
+        #video {
+            width: 100%;
+            height: auto;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Barcode Scanner</h1>
+    <video id="video" autoplay></video>
+    <script src="https://unpkg.com/@zxing/library@latest"></script>
+    <script>
+        const video = document.getElementById('video');
+        const codeReader = new ZXing.BrowserMultiFormatReader();
+        const apiUrl = 'http://localhost:3000';
+
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } })
+            .then(stream => {
+                video.srcObject = stream;
+                video.setAttribute('playsinline', true);
+                video.play();
+                startScanning();
+            })
+            .catch(err => {
+                console.error("Error accessing camera: ", err);
+            });
+
+        function startScanning() {
+            codeReader.decodeFromVideoDevice(null, 'video', (result, err) => {
+                if (result) {
+                    const barcode = result.text;
+                    fetch(`${apiUrl}/barcode/${barcode}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.folder) {
+                                window.open(`file://${data.folder}`, '_blank');
+                            }
+                        })
+                        .catch(() => {
+                            const newFolder = prompt("Barcode not found. Enter the path to the new folder:");
+                            if (newFolder) {
+                                fetch(`${apiUrl}/barcode`, {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({ barcode, folder: newFolder })
+                                })
+                                .then(response => response.json())
+                                .then(() => {
+                                    window.open(`file://${newFolder}`, '_blank');
+                                });
+                            }
+                        });
+                }
+                if (err && !(err instanceof ZXing.NotFoundException)) {
+                    console.error(err);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
